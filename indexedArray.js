@@ -54,7 +54,7 @@ define(function (require, exports, module) {
     return arr;
 
   };
-  IndexedArray.fromObj = function (obj, indexKey) {
+  IndexedArray.fromObject = function (obj, indexKey) {
     indexKey = indexKey || '_id';
     var key, arr = [];
     for(key in obj) {

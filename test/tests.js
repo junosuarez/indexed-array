@@ -200,19 +200,19 @@ describe('IndexedArray', function () {
     });
   });
 
-  describe('fromObj', function () {
+  describe('fromObject', function () {
     it('creates an IndexedArray from an object, essentially flattening indexes into properties', function () {
       var obj = {
         'QWE': {val: 'qwe'},
         'ASD': {val: 'asd'},
         'ZXC': {val: 'zxc'}
-      }
+      };
 
-      var a = IndexedArray.fromObj(obj);
+      var a = IndexedArray.fromObject(obj);
       a.length.should.equal(3);
       a[0]._id.should.equal('QWE');
       a['QWE'].val.should.equal('qwe');
-    })
-  })
+    });
+  });
 
 });
