@@ -4,17 +4,17 @@ An extension to native Array which supports direct element lookup by position in
 
 ## Usage
 
-  var data = [
-    {_id: 'abc', name: 'Kurosawa'},
-    {_id: 'xyz', name: 'Gondry'},
-    {_id: 'rst', name: 'Almodovar'}
-  ];
+    var data = [
+      {_id: 'abc', name: 'Kurosawa'},
+      {_id: 'xyz', name: 'Gondry'},
+      {_id: 'rst', name: 'Almodovar'}
+    ];
 
-  var arr = IndexedArray(data);
-  arr['abc'].name; // 'Kurosawa'
-  arr[0].name;     // 'Kurosawa'
-  arr['rst'].name; // 'Almodovar'
-  arr[2].name;     // 'Almodovar'
+    var arr = IndexedArray(data);
+    arr['abc'].name; // 'Kurosawa'
+    arr[0].name;     // 'Kurosawa'
+    arr['rst'].name; // 'Almodovar'
+    arr[2].name;     // 'Almodovar'
 
 Supports normal Array.prototype methods. See tests for more exmaples.
 
