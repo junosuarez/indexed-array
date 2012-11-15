@@ -47,6 +47,7 @@ IndexedArray supports normal Array.prototype methods:
  - slice
 
 Since IndexedArrays extend plain old Arrays, collection methods work great:
+
  - forEach
  - map
  - reduce
