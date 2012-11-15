@@ -1,0 +1,16 @@
+{
+  "name": "indexed-array",
+  "version": "0.1.0",
+  "description": "An extension to native Array which supports direct element lookup by position index or primary key.",
+  "main": "indexedArray.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": "https://github.com/jden/indexed-array.git",
+  "author": "Jason Denizac <jason@denizac.org>",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "~1.7.0",
+    "chai": "~1.3.0"
+  }
+}
