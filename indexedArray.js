@@ -11,6 +11,16 @@ define(function (require, exports, module) {
       return val[key];
     };
   };
+  var extend = function (obj1, obj2) {
+    var key;
+    for (key in obj2) {
+      if (!obj2.hasOwnProperty(key)) {
+        continue;
+      }
+      obj1[key] = obj2[key];
+    }
+    return obj1;
+  };
   var notInt = /[^\d]/;
   var IndexedArray = function (array, indexer) {
     // enforce no `new` so that we always return an actual
@@ -43,6 +53,20 @@ define(function (require, exports, module) {
 
     return arr;
 
+  };
+  IndexedArray.fromObj = function (obj, indexKey) {
+    indexKey = indexKey || '_id';
+    var key, arr = [];
+    for(key in obj) {
+      if(!obj.hasOwnProperty(key)) {
+        continue;
+      }
+      var o = {};
+      o[indexKey] = key;
+      extend(o, obj[key]);
+      arr.push(o);
+    }
+    return IndexedArray(arr, indexKey);
   };
   var Ap = Array.prototype;
   IndexedArray.prototype = {
