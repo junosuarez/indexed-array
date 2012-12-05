@@ -28,7 +28,7 @@ You can also create an IndexedArray from an object being used as a hashmap:
       'ZXC': {val: 'zxc'}
     }
 
-    var arr = IndexedArray.fromObj(obj);
+    var arr = IndexedArray.fromObject(obj);
 
 Now you can use Array-like methods, such as `push` and `pop` while still being able to access objects in O(1) time without iteration.
 
