@@ -4,7 +4,7 @@ An extension to native Array which supports direct element lookup by position in
 
 ## Usage
 
-    var IndexedArray = require('indexed-array');
+    var IndexedArray = require('indexed-array')
 
     var data = [
       {_id: 'abc', name: 'Kurosawa'},
@@ -12,13 +12,19 @@ An extension to native Array which supports direct element lookup by position in
       {_id: 'rst', name: 'Almodovar'}
     ];
 
-    var arr = IndexedArray(data);
+    var arr = IndexedArray(data)
     arr['abc'].name; // 'Kurosawa'
     arr[0].name;     // 'Kurosawa'
     arr['rst'].name; // 'Almodovar'
     arr[2].name;     // 'Almodovar'
 
 The `IndexedArray` constructor takes an optional existing Array and an optional indexer, which can be either the name of the property to index or a function like you would pass to `Array.prototype.map`. By default, MongoDB style `_id` is used.
+
+    var arrByName = IndexedArray(data, 'name')
+    arrByName['Kurosawa']._id; // => 'abc'
+
+    var arrByName2 = IndexedArray(data, function (x) { return x.name.toLowerCase() })
+    arrByName2['almodovar']._id; // => 'rst'
 
 You can also create an IndexedArray from an object being used as a hashmap:
 
@@ -28,13 +34,13 @@ You can also create an IndexedArray from an object being used as a hashmap:
       'ZXC': {val: 'zxc'}
     }
 
-    var arr = IndexedArray.fromObject(obj);
+    var arr = IndexedArray.fromObject(obj)
 
 Now you can use Array-like methods, such as `push` and `pop` while still being able to access objects in O(1) time without iteration.
 
 When you're done mutating the IndexedArray, you can get the the hashmap directly:
 
-    arr.toObject();
+    arr.toObject()
 
 
 IndexedArray supports normal Array.prototype methods:
@@ -56,21 +62,28 @@ Since IndexedArrays extend plain old Arrays, collection methods work great:
  - every
  - sort
 
-And third party libraries should play nice, too, for example lodash or underscore.
+And third party libraries should play nice, too, for example Lo-Dash or underscore.
 
 See tests for more examples.
 
 ## AMD Compatibility
 
-IndexedArray supports AMD modules and can be used either in node or in the browser. IndexedArray has no dependencies in node but may require ES5 shims in really old browsers.
+IndexedArray supports AMD modules and can be used either in node or in the browser. IndexedArray has no dependencies on node but may require ES5 shims in really old browsers.
 
 ## Installation
 
-    npm install indexed-array
+    $ npm install indexed-array
+
+## Running the tests
+
+From project root,
+
+    $ npm install
+    $ npm test
+
+## Contributing
+Feel free to open an issue or a pull request.
 
 ## License
 Copyright (c) 2012 Jason Denizac <jason@denizac.org>
 Licensed under the MIT license.
-
-## Contributing
-Feel free to open an issue or a pull request. Use this class at your own risk.

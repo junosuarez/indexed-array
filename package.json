@@ -2,7 +2,7 @@
   "name": "indexed-array",
   "version": "0.1.2",
   "description": "An extension to native Array which supports direct element lookup by position index or primary key.",
-  "main": "indexedArray.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
