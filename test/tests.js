@@ -1,5 +1,5 @@
 require('chai').should();
-var IndexedArray = require('../indexedArray');
+var IndexedArray = require('../index');
 
 describe('IndexedArray', function () {
 
