@@ -177,17 +177,31 @@ describe('IndexedArray', function () {
       var a = IndexedArray(arr, 'name');
       a['john'].should.equal(john);
     });
+
     it('defaults to using the property `_id`', function () {
       var arr = [{_id: '23a', boats: 'lots'}, {_id: 's12', boats: 'not so much'}, {_id: 'l337', boats: 'k'}];
       var a = IndexedArray(arr);
       a['l337'].boats.should.equal('k');
     });
+
     it ('won\'t use numbers as indices to prevent confusion with positional indices', function () {
       var arr = [{_id: 14, title: 'Nope'}, {_id: 3, title: 'Wat'}];
       var a = IndexedArray(arr);
 
       (a[14] === undefined).should.be.true;
     });
+
+    it('can use objects with an overridden toString as the index key', function () {
+      var MyStr = function (s) { this.toString = function () { return s } }
+      var arr = [
+        {_id: new MyStr('foo'), val: 3},
+        {_id: new MyStr('faa'), val: 4},
+        {_id: new MyStr('fuu'), val: 5}
+      ]
+      var a = IndexedArray(arr)
+      a['faa'].val.should.equal(4)
+    })
+
     it('takes a custom function as an indexer', function () {
       var arr = [{first: 'BOB', last: 'bobson'}, {first: 'Foo', last: 'barzynsczki'}];
       var a = IndexedArray(arr, function (x) { return x.first.toLowerCase(); });

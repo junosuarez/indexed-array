@@ -22,6 +22,9 @@ define(function (require, exports, module) {
     return obj1;
   };
   var notInt = /[^\d]/;
+  var stringify = function (x) {
+    return x !== null && x !== void 0 ? x+'' : x;
+  }
   var IndexedArray = function (array, indexer) {
     // enforce no `new` so that we always return an actual
     // array to pass `instanceof Array`
@@ -35,8 +38,9 @@ define(function (require, exports, module) {
     arr._i = {};
 
     arr._index = function (val) {
-      var i = arr._indexer(val);
-      if (typeof i === 'string' && notInt.test(i)) {
+      var i = stringify(arr._indexer(val));
+
+      if (i && notInt.test(i)) {
         arr._i[i] = arr[i] = val;
       }
     };
