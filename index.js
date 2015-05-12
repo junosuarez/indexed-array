@@ -23,7 +23,7 @@ define(function (require, exports, module) {
   };
   var notInt = /[^\d]/;
   var stringify = function (x) {
-    return x !== null && x !== void 0 ? x+'' : x;
+    return x !== null && x !== void 0 ? String(x) : x;
   }
   var IndexedArray = function (array, indexer) {
     // enforce no `new` so that we always return an actual
@@ -40,7 +40,8 @@ define(function (require, exports, module) {
     arr._index = function (val) {
       var i = stringify(arr._indexer(val));
 
-      if (i && notInt.test(i)) {
+      // only allow large numbers
+      if (i && (notInt.test(i) || i.length > 10)) {
         arr._i[i] = arr[i] = val;
       }
     };

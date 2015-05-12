@@ -184,12 +184,20 @@ describe('IndexedArray', function () {
       a['l337'].boats.should.equal('k');
     });
 
-    it ('won\'t use numbers as indices to prevent confusion with positional indices', function () {
+    it('won\'t use small numbers as indices to prevent confusion with positional indices', function () {
       var arr = [{_id: 14, title: 'Nope'}, {_id: 3, title: 'Wat'}];
       var a = IndexedArray(arr);
 
       (a[14] === undefined).should.be.true;
     });
+
+    it('can use big numbers (as might appear in serialized hex ids) as indexes (>10 chars)', function () {
+      var arr = [{_id: '555152157769773177000002', a:true},{_id: '12345678901', b:false}]
+      var a = IndexedArray(arr)
+
+      a['555152157769773177000002'].a.should.equal(true)
+      a['12345678901'].b.should.equal(false)
+    })
 
     it('can use objects with an overridden toString as the index key', function () {
       var MyStr = function (s) { this.toString = function () { return s } }
